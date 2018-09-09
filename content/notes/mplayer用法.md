@@ -1,0 +1,275 @@
+---
+title: "Mplayer用法"
+date: 2018-09-09T17:22:33+08:00
+lastmod: 2018-09-09T17:22:33+08:00
+tags : [ "dev", "hugo", "hyde-hyde"]
+categories : [ "dev" ]
+layout: post
+type:  "post"
+highlight: false
+draft: false
+---
+```
+
+1，录音:
+mplayer       mms://202.***.***.***/test.asf     -dumpstream     -dumpfile  MyMovie.asf
+可以把mms ,rtsp.http.ftp….等协议的视频流录制下来,保存为 MyMovie.asf 文件.
+2,把mplayer可以播放的文件转化为avi格式：
+mencoder yourfile.rm  -ovc copy -oac copy -o testOut.avi
+3，如何转化为mp3文件：
+mplayer -vo null -ao pcm  music.wmv lame -h audiodump.wav music.mp3
+4， 如何把一个目录下所有图片转化为一个视频文件
+mencoder /*.jpg -mf on:fps=25 -o output.avi -ovc divx4
+5，如何用wget来看视频?
+wget   ftp://micorsops.com/something.avi   -O  -  | mplayer -
+6，用mplayer播放rtp等使用tcp socket
+-rtsp-stream-over-tcp
+7，mplayer播放带密码的地址
+mplay rtsp://<username> :<password> @<hostname> :<etc.>
+8，mplayer 无法播放某些rm的文件原因
+Note that the LIVE555 Streaming Media libraries do not support RealAudio and/or RealVideo streams - even those described by a "rtsp://" URL - because these streams do not use RTP for transport. (Instead, these streams use RealNetworks' proprietary "RDT" protocol.)
+也就是说有些rtsp地址的文件传输协议用的是rdt而不是rtp；
+9，播放dvd
+mplayer dvd://<titlenumber>
+10，指定字幕文件
+mplayer -sub <somesubtitlefile> <somefile>
+11，定语言代码来使用字幕
+mplayer dvd://<titlenumber> -slang nl,en
+12，同步问题的解决方法
+努力修复
+mplayer -autosync 30 -mc 2.0 <somefile>
+不修复
+mplayer -autosync 0 -mc 0 <somefile>
+13，慢速cpu上播放
+mplayer -framedrop <somefile>
+14，播放列表
+mplayer -playlist <file or url>
+15，mpalyer指定缓存
+mplayer -cache 8192 -playlist <file or url>
+mplayer -cache 8192 -cache-min 50 -playlist <file or url>
+
+mplayer /tmp/media –cache 3000      // mplayer在缓充3M数据后开始播放
+注意必须建立缓充，以支持读取数据时的小范围索引
+16，mplayer循环播放
+mplayer -loop 3 <somefile>
+永远播放（0）
+mplayer -loop 0 <somefile>
+17，快放或者慢放
+值为1正常，
+小于1快进，
+大于1满放
+mplayer -speed 2.0 <somefile>
+18，改变输出采样率
+mplayer -srate 48000 <somefile>
+19，视频文件中的音频部分输出为 wav 文件
+mplayer -ao pcm <somefile>
+这将输出名为 audiodump.wav 的音频文件。你也可以为输出的 wav 文件指定名称：
+mplayer -ao pcm:file=<filename>.wav <somefile>
+20，将电影输出为一系列的图片
+mplayer -vo jpeg <somefile>
+21，播放比例调整
+mplayer -aspect 16:9 <somefile>
+mplayer -aspect 4:3 <somefile>
+22，创建播放列表
+ls $HOME/music > music.lst
+echo music.mp3 >> music.lst
+mplayer -playlist music.lst
+23，控制热键
+基本播放
+→　　　　　前进10秒
+←　　　　　后退10秒
+↑　　　　　前进60秒
+↓　　　　　后退60秒
+PageUP　　前进10分钟
+PageDown　后退10分钟
+Enter　　　全屏开关
+Space　　　暂停开关
+Esc　　　　退出
+q　　　　　退出
+
+音量
+9　　　　　降低音量
+0　　　　　增大音量
+/　　　　　降低音量
+*　　　　　增大音量
+a　　　　　切换声道：若有多种语言音轨，在多音轨间切换；
+否则，在左右声道与立体声间切换；
+
+字幕
+o　　　　　切换屏幕显示键盘控制（比如音量）和时间的格式
+v　　　　　切换是否显示字幕
+j　　　　　在不同语言的字幕之间切换
+z　　　　　字幕推迟显示0.1秒
+x　　　　　字幕提前显示0.1秒
+{　　　　　字幕提前显示1秒
+}　　　　　字幕提前显示10秒
+r　　　　　字幕位置向上1%
+t　　　　　字幕位置向下1%
+
+画面
+1　　　　　对比度减
+2　　　　　对比度加
+3　　　　　亮度减
+4　　　　　亮度加
+7　　　　　饱和度减，到最后就是黑白了
+8　　　　　饱和度加
+d　　　　　切换是否降低祯数，显卡跟不上去的时候使用，以避免影音不同步
+s　　　　　截屏，截取的图片(png格式)存放在视频所在文件夹下
+
+其他非常用控制
+<　　　　　暂停状态下，后退一祯
+>　　　　　暂停状态下，前进一祯
+F7　　　　　将播放速度减慢0.25倍速
+F8　　　　　将播放速度加快0.25倍速
+F6　　　　　将播放速度重设为1.0倍速
+
+鼠标控制
+
+单击　　　　暂停开关
+双击　　　　全屏切换
+右键单击　　切换前端显示-总是|播放时|总不
+按滚轮　　　切换OSD（同o）
+滚动滚轮　　调节音量
+
+来自另一个来源的总结：
+
+    f－当播放视频时，在全屏和窗口模式之间切换。你也可以在命令行中使用 -fs 选项，以便让 MPlayer 开始在全屏模式中播放。
+    o－在播放视频时切换 OSD（OnScreen Display）模式。
+    p 或 Space－暂停／继续播放。
+    q 或 Esc－退出 MPlayer。在 GUI 模式时，Esc 不会退出，仅停止播放。
+    / 和 * 或 9 和 0－减小或增大音量。
+    m－静音切换。
+    T（通常是 Shift + t）－播放窗口置顶切换。
+    b 和 j－在可用的字幕间循环。
+    x 和 z－调整字幕的延迟时间。
+    I（Shift + i）－显示播放电影的文件名称。
+    1 和 2－调整对比度。
+    3 和 4－调整亮度。
+    5 和 6－调整色度。
+    7 和 8－调整饱和度。
+
+
+作为slave的时候的命令列表：
+mplayer –input cmdlist
+
+MPlayer 1.0rc2-4.1.2 (C) 2000-2007 MPlayer Team
+CPU: SGI MIPS
+Creating config file: //.mplayer/config
+seek                 Float [Integer]
+edl_mark           
+audio_delay          Float [Integer]
+speed_incr           Float
+speed_mult           Float
+speed_set            Float
+quit                 [Integer]
+pause              
+frame_step         
+pt_step              Integer [Integer]
+pt_up_step           Integer [Integer]
+alt_src_step         Integer
+loop                 Integer [Integer]
+sub_delay            Float [Integer]
+sub_step             Integer [Integer]
+osd                  [Integer]
+osd_show_text        String [Integer] [Integer]
+osd_show_property_te String [Integer] [Integer]
+volume               Float [Integer]
+balance              Float [Integer]
+use_master         
+mute                 [Integer]
+contrast             Integer [Integer]
+gamma                Integer [Integer]
+brightness           Integer [Integer]
+hue                  Integer [Integer]
+saturation           Integer [Integer]
+frame_drop           [Integer]
+sub_pos              Integer [Integer]
+sub_alignment        [Integer]
+sub_visibility       [Integer]
+sub_load             String
+sub_remove           [Integer]
+vobsub_lang          [Integer]
+sub_select           [Integer]
+sub_log            
+sub_scale            Float [Integer]
+get_percent_pos    
+get_time_pos       
+get_time_length    
+get_file_name      
+get_video_codec    
+get_video_bitrate  
+get_video_resolution
+get_audio_codec    
+get_audio_bitrate  
+get_audio_samples  
+get_meta_title     
+get_meta_artist    
+get_meta_album     
+get_meta_year      
+get_meta_comment   
+get_meta_track     
+get_meta_genre     
+switch_audio         [Integer]
+tv_start_scan      
+tv_step_channel      Integer
+tv_step_norm       
+tv_step_chanlist   
+tv_set_channel       String
+tv_last_channel    
+tv_set_freq          Float
+tv_step_freq         Float
+tv_set_norm          String
+tv_set_brightness    Integer [Integer]
+tv_set_contrast      Integer [Integer]
+tv_set_hue           Integer [Integer]
+tv_set_saturation    Integer [Integer]
+forced_subs_only     [Integer]
+dvb_set_channel      Integer Integer
+switch_ratio         [Float]
+vo_fullscreen        [Integer]
+vo_ontop             [Integer]
+file_filter          Integer
+vo_rootwin           [Integer]
+vo_border            [Integer]
+screenshot           [Integer]
+panscan              Float [Integer]
+switch_vsync         [Integer]
+loadfile             String [Integer]
+loadlist             String [Integer]
+run                  String
+change_rectangle     Integer Integer
+get_vo_fullscreen  
+get_sub_visibility
+key_down_event       Integer
+set_property         String String
+get_property         String
+step_property        String [Float] [Integer]
+seek_chapter         Integer [Integer]
+set_mouse_pos        Integer Integer
+
+协议介绍：
+实时传输协议RTP( Real-Time Transport Protocol)
+实时传输控制协议RTCP(Real-Time Transport Control Protocol)
+实时流协议RTSP(Real-Time Streaming Protocol)
+协议讲解：
+http://zhangjunhd.blog.51cto.com/113473/25481
+http://www.hudong.com/wiki/RTP-%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE
+http://blog.csdn.net/chenyanxu/archive/2008/07/29/2728427.aspx
+这里是rdp的讲解， Reliable Data Protocol
+http://www.networkdictionary.cn/protocols/rdp.php
+这里是rdt的讲解，这个是real公司的私有财产：
+http://rockmen1.bokee.com/4961895.html
+
+
+reference：
+工具使用：
+http://yowlab.shps.kh.edu.tw/wordpress/?p=598
+rtsp的客户端：
+http://www.live555.com/liveMedia/#testProgs
+相关说明：
+http://www.live555.com/liveMedia/
+mplayer和rsp的支持：
+http://www.live555.com/mplayer/
+mplayer的优化：
+http://freshmeat.net/articles/fine-tuning-mplayer
+```

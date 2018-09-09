@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JAVAEE技术 on IT BLOG</title>
+    <link>https://unclesky4.github.io/javaee/</link>
+    <description>Recent content in JAVAEE技术 on IT BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Sep 2018 17:36:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://unclesky4.github.io/javaee/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shiro刷新权限</title>
+      <link>https://unclesky4.github.io/javaee/shiro%E5%88%B7%E6%96%B0%E6%9D%83%E9%99%90/</link>
+      <pubDate>Sun, 09 Sep 2018 17:36:15 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/javaee/shiro%E5%88%B7%E6%96%B0%E6%9D%83%E9%99%90/</guid>
+      <description>自定义Realm添加如下代码：
+ public void clearAuthz(){ this.clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals()); } /** * shiro刷新权限 */ public static void reloadAuthorizing() { LoggerFactory.getLogger(This.class).info(&amp;quot;权限刷新成功&amp;quot;); RealmSecurityManager rsm = (RealmSecurityManager)SecurityUtils.getSecurityManager(); MyShiroRealm realm = (MyShiroRealm)rsm.getRealms().iterator().next(); realm.clearAuthz(); }  </description>
+    </item>
+    
+    <item>
+      <title>Mybatis用typeHandler处理enum类型</title>
+      <link>https://unclesky4.github.io/javaee/mybatis%E7%94%A8typehandler%E5%A4%84%E7%90%86enum%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Sun, 09 Sep 2018 17:26:44 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/javaee/mybatis%E7%94%A8typehandler%E5%A4%84%E7%90%86enum%E7%B1%BB%E5%9E%8B/</guid>
+      <description>如果想使用mybatis自带的枚举类处理，有2种方式，一个是EnumTypeHandler，一个是EnumOrdinalTypeHandler。 区别如下: EnumTypeHandler直接存储name值。它是mybatis默认的枚举类型转换器。 EnumOrdinalTypeHandler存储enum类里的序号值，此时数据库表字段一般对应用smallint/int类型的处理。 使用的时侯很简单，在insert或者update语句块，或者resultMap字段等地方指定相应的typeHandler即可。 &amp;lt;insert id=&amp;quot;insertUser&amp;quot; parameterType=&amp;quot;User&amp;quot;&amp;gt; insert into user(id,userName,status) values(#{id},#{userName},#{status,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}) &amp;lt;/insert&amp;gt; 或 &amp;lt;resultMap id=&amp;quot;BaseResultMap&amp;quot; type=&amp;quot;User&amp;quot;&amp;gt; &amp;lt;id column=&amp;quot;id&amp;quot; property=&amp;quot;userId&amp;quot; jdbcType=&amp;quot;INTEGER&amp;quot; /&amp;gt; &amp;lt;result column=&amp;quot;status&amp;quot; property=&amp;quot;status&amp;quot; typeHandler=&amp;quot;org.apache.ibatis.type.EnumOrdinalTypeHandler&amp;quot;/&amp;gt; &amp;lt;/resultMap&amp;gt; 不过大多数情况下，想存储的并不是枚举的顺序号，而是存储自定义的id值，这时我们就需要自己写enum的处理类。 若程序中原来有一个枚举类，name是长沙、株洲、湘潭三地，value采用身份证上的地区编号。 public enum CityTest { ChangSha(4301),Zhuzhou(4302),Xiangtan(4303); int value; private CityTest(int value){ this.value=value; } public int getValue() { return this.value; } /*方法Value2CityTest是为了typeHandler后加的*/ public static CityTest Value2CityTest(int value) { for (CityTest citytest : CityTest.values()) { if (citytest.value == value) { return citytest; } } throw new IllegalArgumentException(&amp;quot;无效的value值: &amp;quot; + value + &amp;quot;!</description>
+    </item>
+    
+    <item>
+      <title>框架总结</title>
+      <link>https://unclesky4.github.io/javaee/%E6%A1%86%E6%9E%B6%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 09 Sep 2018 17:17:41 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/javaee/%E6%A1%86%E6%9E%B6%E6%80%BB%E7%BB%93/</guid>
+      <description>Swagger2,sosoapi(接口文档在线生成)
+kafka,activemq(消息中间件)
+ehcache,redis(缓存)
+hadoop(分布式系统)
+hbase(分布式数据库)
+zookeeper(分布式应用程序协调服务)
+dubbo(分布式服务架构RPC)
+Spring Cloud(一系列框架的集合)
+druid(数据库连接池)
+jdbcTemplate(jdbc小工具，非框架)
+jpa,mybatis,hibernate(ORM框架)
+thymeleaf,freemarker(模版引擎)
+shiro(权限控制框架)
+spring boot(微服务架构)
+slf4j(日志系统规范，logback,log4j是其实现)
+hibernate-validator(参数验证工具)
+lombok(简化代码的java库)
+Gson(谷歌json解析框架)
+zxing(二维码处理库)
+UserAgentUtils(判断客户端类型库)
+spring webflux 异步非阻塞框架
+
+其他：
+netty NIO框架
+Vert.x Vert.x框架基于事件和异步,依托于全异步Java服务器Netty
+protobuf 序列化协议
+序列化框架：
+Gson json类
+kryo 二进制类
+protostuff,avro RPC类</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on IT BLOG</title>
+    <link>https://unclesky4.github.io/linux/</link>
+    <description>Recent content in Linux on IT BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Sep 2018 16:58:38 +0800</lastBuildDate>
+    
+	<atom:link href="https://unclesky4.github.io/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos7笔记</title>
+      <link>https://unclesky4.github.io/linux/centos7%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 09 Sep 2018 16:58:38 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/linux/centos7%E7%AC%94%E8%AE%B0/</guid>
+      <description>centos最小好化安装没有ifconfig命令
+ yum install net-tools
+ifconfig命令在net-tools软件包里
+nslookup,dig在bind-utils中
+centos使用了systemd来代替sysvinit
+ systemd使用方法：
+ systemd的服务管理程序:systemctl
+systemctl是最主要的工具。它融合service和chkconfig的功能于一体。你可以使用它永久性或只在当前会话中启用/禁用服务.
+如何启动/关闭、启用/禁用服务？ 运行一个服务： systemctl start foo.service
+关闭一个服务： systemctl stop foo.service 重启一个服务： 重启一个服务： systemctl restart foo.service 显示一个服务（无论运行与否）的状态： systemctl status foo.service 在开机时启用一个服务： systemctl enable foo.service 在开机时禁用一个服务： systemctl disable foo.service
+查看服务是否开机启动：systemctl is-enabled iptables.service;echo $?
+   任务 旧指令 新指令     使某服务自动启动 chkconfig &amp;ndash;level 3 httpd on systemctl enable httpd.service   使某服务不自动启动 chkconfig &amp;ndash;level 3 httpd off systemctl disable httpd.</description>
+    </item>
+    
+    <item>
+      <title>Centos7桌面及开发必备软件</title>
+      <link>https://unclesky4.github.io/linux/centos7%E6%A1%8C%E9%9D%A2%E5%8F%8A%E5%BC%80%E5%8F%91%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6/</link>
+      <pubDate>Sun, 09 Sep 2018 15:49:23 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/linux/centos7%E6%A1%8C%E9%9D%A2%E5%8F%8A%E5%BC%80%E5%8F%91%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6/</guid>
+      <description>必备软件
+ 1. Ibus输入法软件
+2. FireFox浏览器
+3. 微信 (Electronic WeChat)
+4. 压缩/解压工具
+yum install rar unrar zip unzip p7zip
+需node.js环境, 安装npm
+4. VIM安装
+ 娱乐软件
+ 1. VLC 播放器
+2. DeadBeef 音乐播放器
+3. Transmission下载工具
+ 开发相关软件
+ 1. gcc系列
+ yum install gcc gcc++ gcc-gfortran compat-gcc-44 compat-gcc-44-c++ compat-libf2c-34 yum install make cmake gdb clang  2. 版本控制
+yum install git
+配置：
+git config &amp;ndash;global user.name &amp;ldquo;username&amp;rdquo;
+git config &amp;ndash;global user.</description>
+    </item>
+    
+    <item>
+      <title>Centos7_Setting</title>
+      <link>https://unclesky4.github.io/linux/centos7_setting/</link>
+      <pubDate>Sun, 09 Sep 2018 15:32:10 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/linux/centos7_setting/</guid>
+      <description>1.安装 - 自定义分区
+ / ：根目录，合理使用并及时清理的话15G就够了，不过建议30G以上；
+swap ：与物理内存大小一致即可；
+/boot : 300Mb足够;
+/home ：余下的全部空间
+注：除以上分区外，可以再自定义分区,如/opt,/data
+ 2.删除多余的kernel
+  yum update 执行之后，可能会将kernel也一起更新，则在启动CentOS时启动项中会有很多项。 确认当前使用的kernel版本号: $ uname -r 3.10.0-123.9.3.el7.x86_64 查找当前系统安装的所有kernel: $ rpm -qa | grep kernel | sort kernel-3.10.0-123.8.1.el7.x86_64 kernel-3.10.0-123.9.2.el7.x86_64 kernel-3.10.0-123.9.3.el7.x86_64 kernel-devel-3.10.0-123.8.1.el7.x86_64 kernel-devel-3.10.0-123.9.2.el7.x86_64 kernel-devel-3.10.0-123.9.3.el7.x86_64 kernel-headers-3.10.0-123.9.3.el7.x86_64 kernel-tools-3.10.0-123.9.3.el7.x86_64 kernel-tools-libs-3.10.0-123.9.3.el7.x86_64 可以看出有三个版本的kernel，123.8.1、123.9.2和123.9.3。除了最新的kernel外，建议多保留一个旧kernel，以免新kernel出现问题时可以通过旧kernel进入系统。因而此处删除123.8.1版本的kernel: sudo yum remove kernel-3.10.0-123.8.1.el7.x86_64 sudo yum remove kernel-devel-3.10.0-123.8.1.el7.x86_64   3.NTFS驱动
+ CentOS下默认无法挂载NTFS格式的硬盘。需安装nfts-3g即可实现即插即用:
+sudo yum install ntfs-3g
+ 4.安装第三方源
+  epel源  sudo yum install epel-release</description>
+    </item>
+    
+  </channel>
+</rss>

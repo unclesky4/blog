@@ -1,0 +1,65 @@
+baseurl = "http://unclesky4.github.io/"
+languageCode = "en-us"
+title = "IT BLOG"
+theme = "hyde-hyde"
+
+#[params.social]
+#	twitter = "htr3n"
+#	keybase = "htr3n"
+#	github = "htr3n"
+
+
+[params]
+description = "我的蔚蓝天空"
+copyright = "Copyright (c) 2018, unckesky4"
+paginate = 10
+paginatePath = "page"
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+series = "series"
+
+
+[[menu.main]]
+  name = "首 页"
+  #pre = "<i class='fa fa-home'></i>"
+  weight = -110
+  identifier = "home"
+  url = "/home"
+[[menu.main]]
+  name = "JAVA"
+  #pre = "<i class='fa fa-road'></i>"
+  weight = -100
+	identifier = "java"
+  url = "/java"
+[[menu.main]]
+  name = "JAVAEE"
+  #pre = "<i class='fa fa-road'></i>"
+  weight = -100
+	identifier = "javaee"
+  url = "/javaee/"
+[[menu.main]]
+  name = "数据库"
+  #pre = "<i class='fa fa-road'></i>"
+  weight = -100
+	identifier = "database"
+  url = "/database/"
+[[menu.main]]
+  name = "WEB前端"
+  #pre = "<i class='fa fa-road'></i>"
+  weight = -100
+	identifier = "html"
+  url = "/html/"
+[[menu.main]]
+    name = "Linux"
+    #pre = "<i class='fa fa-road'></i>"
+    weight = -100
+  	identifier = "linux"
+    url = "/linux/"
+[[menu.main]]
+  name = "随笔文档"
+  #pre = "<i class='fa fa-road'></i>"
+  weight = -100
+	identifier = "notes"
+  url = "/notes/"

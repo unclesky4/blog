@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IT BLOG</title>
+    <link>https://unclesky4.github.io/</link>
+    <description>Recent content on IT BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Sep 2018 17:36:15 +0800</lastBuildDate>
+    
+	<atom:link href="https://unclesky4.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shiro刷新权限</title>
+      <link>https://unclesky4.github.io/javaee/shiro%E5%88%B7%E6%96%B0%E6%9D%83%E9%99%90/</link>
+      <pubDate>Sun, 09 Sep 2018 17:36:15 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/javaee/shiro%E5%88%B7%E6%96%B0%E6%9D%83%E9%99%90/</guid>
+      <description>自定义Realm添加如下代码：
+ public void clearAuthz(){ this.clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals()); } /** * shiro刷新权限 */ public static void reloadAuthorizing() { LoggerFactory.getLogger(This.class).info(&amp;quot;权限刷新成功&amp;quot;); RealmSecurityManager rsm = (RealmSecurityManager)SecurityUtils.getSecurityManager(); MyShiroRealm realm = (MyShiroRealm)rsm.getRealms().iterator().next(); realm.clearAuthz(); }  </description>
+    </item>
+    
+    <item>
+      <title>Java位运算</title>
+      <link>https://unclesky4.github.io/java/java%E4%BD%8D%E8%BF%90%E7%AE%97/</link>
+      <pubDate>Sun, 09 Sep 2018 17:33:54 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/java/java%E4%BD%8D%E8%BF%90%E7%AE%97/</guid>
+      <description>1. 判断int型变量a是奇数还是偶数 a&amp;amp;1 = 0 偶数 a&amp;amp;1 = 1 奇数 2. 求平均值，比如有两个int类型变量x、y,首先要求x+y的和，再除以2，但是有可能x+y的结果会超过int的最大表示范围，所以位运算就派上用场啦。 (x&amp;amp;y)+((x^y)&amp;gt;&amp;gt;1); 3. 对于一个大于0的整数，判断它是不是2的几次方 ((x&amp;amp;(x-1))==0)&amp;amp;&amp;amp;(x!=0)； 4. 比如有两个int类型变量x、y,要求两者数字交换，位运算的实现方法：性能绝对高效 x ^= y; y ^= x; x ^= y; 5. 求绝对值 int abs( int x ) { int y ; y = x &amp;gt;&amp;gt; 31 ; return (x^y)-y ; //or: (x+y)^y } 6. 取模运算，采用位运算实现： a % (2^n) 等价于 a &amp;amp; (2^n - 1) 7. 乘法运算 采用位运算实现 a * (2^n) 等价于 a &amp;lt;&amp;lt; n 8.</description>
+    </item>
+    
+    <item>
+      <title>Mybatis用typeHandler处理enum类型</title>
+      <link>https://unclesky4.github.io/javaee/mybatis%E7%94%A8typehandler%E5%A4%84%E7%90%86enum%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Sun, 09 Sep 2018 17:26:44 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/javaee/mybatis%E7%94%A8typehandler%E5%A4%84%E7%90%86enum%E7%B1%BB%E5%9E%8B/</guid>
+      <description>如果想使用mybatis自带的枚举类处理，有2种方式，一个是EnumTypeHandler，一个是EnumOrdinalTypeHandler。 区别如下: EnumTypeHandler直接存储name值。它是mybatis默认的枚举类型转换器。 EnumOrdinalTypeHandler存储enum类里的序号值，此时数据库表字段一般对应用smallint/int类型的处理。 使用的时侯很简单，在insert或者update语句块，或者resultMap字段等地方指定相应的typeHandler即可。 &amp;lt;insert id=&amp;quot;insertUser&amp;quot; parameterType=&amp;quot;User&amp;quot;&amp;gt; insert into user(id,userName,status) values(#{id},#{userName},#{status,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}) &amp;lt;/insert&amp;gt; 或 &amp;lt;resultMap id=&amp;quot;BaseResultMap&amp;quot; type=&amp;quot;User&amp;quot;&amp;gt; &amp;lt;id column=&amp;quot;id&amp;quot; property=&amp;quot;userId&amp;quot; jdbcType=&amp;quot;INTEGER&amp;quot; /&amp;gt; &amp;lt;result column=&amp;quot;status&amp;quot; property=&amp;quot;status&amp;quot; typeHandler=&amp;quot;org.apache.ibatis.type.EnumOrdinalTypeHandler&amp;quot;/&amp;gt; &amp;lt;/resultMap&amp;gt; 不过大多数情况下，想存储的并不是枚举的顺序号，而是存储自定义的id值，这时我们就需要自己写enum的处理类。 若程序中原来有一个枚举类，name是长沙、株洲、湘潭三地，value采用身份证上的地区编号。 public enum CityTest { ChangSha(4301),Zhuzhou(4302),Xiangtan(4303); int value; private CityTest(int value){ this.value=value; } public int getValue() { return this.value; } /*方法Value2CityTest是为了typeHandler后加的*/ public static CityTest Value2CityTest(int value) { for (CityTest citytest : CityTest.values()) { if (citytest.value == value) { return citytest; } } throw new IllegalArgumentException(&amp;quot;无效的value值: &amp;quot; + value + &amp;quot;!</description>
+    </item>
+    
+    <item>
+      <title>JsonConfig的使用</title>
+      <link>https://unclesky4.github.io/java/jsonconfig%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Sun, 09 Sep 2018 17:24:37 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/java/jsonconfig%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>我们通常对一个Json串和Java对象进行互转时，经常会有选择性的过滤掉一些属性值，而json-lib包中的JsonConfig为我们提供了这种 功能，具体实现方法有以下几种。(1)建立JsonConfig实例，并配置属性排除列表,(2)用属性过滤器,(3)写一个自定义的 JsonBeanProcessor. 1. 实现JSONString接口的方法 public class Person implements JSONString { private String name; private String lastname; private Address address; // getters &amp;amp; setters public String toJSONString() { return &amp;quot;{name:&#39;&amp;quot;+name+&amp;quot;&#39;,lastname:&#39;&amp;quot;+lastname+&amp;quot;&#39;}&amp;quot;; } } 2.第二种方法通过jsonconfig实例，对包含和需要排除的属性进行方便的添加或删除 public class Person { private String name; private String lastname; private Address address; // getters &amp;amp; setters } JsonConfig jsonConfig = new JsonConfig(); jsonConfig.setExclusions( new String[]{&amp;quot;address&amp;quot;}); Person bean = new Person(&amp;quot;jack&amp;quot;,&amp;quot;li&amp;quot;); JSON json = JSONSerializer.toJSON(bean, jsonConfig); 3.</description>
+    </item>
+    
+    <item>
+      <title>Mplayer用法</title>
+      <link>https://unclesky4.github.io/notes/mplayer%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Sun, 09 Sep 2018 17:22:33 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/notes/mplayer%E7%94%A8%E6%B3%95/</guid>
+      <description>1，录音: mplayer mms://202.***.***.***/test.asf -dumpstream -dumpfile MyMovie.asf 可以把mms ,rtsp.http.ftp….等协议的视频流录制下来,保存为 MyMovie.asf 文件. 2,把mplayer可以播放的文件转化为avi格式： mencoder yourfile.rm -ovc copy -oac copy -o testOut.avi 3，如何转化为mp3文件： mplayer -vo null -ao pcm music.wmv lame -h audiodump.wav music.mp3 4， 如何把一个目录下所有图片转化为一个视频文件 mencoder /*.jpg -mf on:fps=25 -o output.avi -ovc divx4 5，如何用wget来看视频? wget ftp://micorsops.com/something.avi -O - | mplayer - 6，用mplayer播放rtp等使用tcp socket -rtsp-stream-over-tcp 7，mplayer播放带密码的地址 mplay rtsp://&amp;lt;username&amp;gt; :&amp;lt;password&amp;gt; @&amp;lt;hostname&amp;gt; :&amp;lt;etc.&amp;gt; 8，mplayer 无法播放某些rm的文件原因 Note that the LIVE555 Streaming Media libraries do not support RealAudio and/or RealVideo streams - even those described by a &amp;quot;rtsp://&amp;quot; URL - because these streams do not use RTP for transport.</description>
+    </item>
+    
+    <item>
+      <title>框架总结</title>
+      <link>https://unclesky4.github.io/javaee/%E6%A1%86%E6%9E%B6%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 09 Sep 2018 17:17:41 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/javaee/%E6%A1%86%E6%9E%B6%E6%80%BB%E7%BB%93/</guid>
+      <description>Swagger2,sosoapi(接口文档在线生成)
+kafka,activemq(消息中间件)
+ehcache,redis(缓存)
+hadoop(分布式系统)
+hbase(分布式数据库)
+zookeeper(分布式应用程序协调服务)
+dubbo(分布式服务架构RPC)
+Spring Cloud(一系列框架的集合)
+druid(数据库连接池)
+jdbcTemplate(jdbc小工具，非框架)
+jpa,mybatis,hibernate(ORM框架)
+thymeleaf,freemarker(模版引擎)
+shiro(权限控制框架)
+spring boot(微服务架构)
+slf4j(日志系统规范，logback,log4j是其实现)
+hibernate-validator(参数验证工具)
+lombok(简化代码的java库)
+Gson(谷歌json解析框架)
+zxing(二维码处理库)
+UserAgentUtils(判断客户端类型库)
+spring webflux 异步非阻塞框架
+
+其他：
+netty NIO框架
+Vert.x Vert.x框架基于事件和异步,依托于全异步Java服务器Netty
+protobuf 序列化协议
+序列化框架：
+Gson json类
+kryo 二进制类
+protostuff,avro RPC类</description>
+    </item>
+    
+    <item>
+      <title>Centos7笔记</title>
+      <link>https://unclesky4.github.io/linux/centos7%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 09 Sep 2018 16:58:38 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/linux/centos7%E7%AC%94%E8%AE%B0/</guid>
+      <description>centos最小好化安装没有ifconfig命令
+ yum install net-tools
+ifconfig命令在net-tools软件包里
+nslookup,dig在bind-utils中
+centos使用了systemd来代替sysvinit
+ systemd使用方法：
+ systemd的服务管理程序:systemctl
+systemctl是最主要的工具。它融合service和chkconfig的功能于一体。你可以使用它永久性或只在当前会话中启用/禁用服务.
+如何启动/关闭、启用/禁用服务？ 运行一个服务： systemctl start foo.service
+关闭一个服务： systemctl stop foo.service 重启一个服务： 重启一个服务： systemctl restart foo.service 显示一个服务（无论运行与否）的状态： systemctl status foo.service 在开机时启用一个服务： systemctl enable foo.service 在开机时禁用一个服务： systemctl disable foo.service
+查看服务是否开机启动：systemctl is-enabled iptables.service;echo $?
+   任务 旧指令 新指令     使某服务自动启动 chkconfig &amp;ndash;level 3 httpd on systemctl enable httpd.service   使某服务不自动启动 chkconfig &amp;ndash;level 3 httpd off systemctl disable httpd.</description>
+    </item>
+    
+    <item>
+      <title>Centos7桌面及开发必备软件</title>
+      <link>https://unclesky4.github.io/linux/centos7%E6%A1%8C%E9%9D%A2%E5%8F%8A%E5%BC%80%E5%8F%91%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6/</link>
+      <pubDate>Sun, 09 Sep 2018 15:49:23 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/linux/centos7%E6%A1%8C%E9%9D%A2%E5%8F%8A%E5%BC%80%E5%8F%91%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6/</guid>
+      <description>必备软件
+ 1. Ibus输入法软件
+2. FireFox浏览器
+3. 微信 (Electronic WeChat)
+4. 压缩/解压工具
+yum install rar unrar zip unzip p7zip
+需node.js环境, 安装npm
+4. VIM安装
+ 娱乐软件
+ 1. VLC 播放器
+2. DeadBeef 音乐播放器
+3. Transmission下载工具
+ 开发相关软件
+ 1. gcc系列
+ yum install gcc gcc++ gcc-gfortran compat-gcc-44 compat-gcc-44-c++ compat-libf2c-34 yum install make cmake gdb clang  2. 版本控制
+yum install git
+配置：
+git config &amp;ndash;global user.name &amp;ldquo;username&amp;rdquo;
+git config &amp;ndash;global user.</description>
+    </item>
+    
+    <item>
+      <title>Centos7_Setting</title>
+      <link>https://unclesky4.github.io/linux/centos7_setting/</link>
+      <pubDate>Sun, 09 Sep 2018 15:32:10 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/linux/centos7_setting/</guid>
+      <description>1.安装 - 自定义分区
+ / ：根目录，合理使用并及时清理的话15G就够了，不过建议30G以上；
+swap ：与物理内存大小一致即可；
+/boot : 300Mb足够;
+/home ：余下的全部空间
+注：除以上分区外，可以再自定义分区,如/opt,/data
+ 2.删除多余的kernel
+  yum update 执行之后，可能会将kernel也一起更新，则在启动CentOS时启动项中会有很多项。 确认当前使用的kernel版本号: $ uname -r 3.10.0-123.9.3.el7.x86_64 查找当前系统安装的所有kernel: $ rpm -qa | grep kernel | sort kernel-3.10.0-123.8.1.el7.x86_64 kernel-3.10.0-123.9.2.el7.x86_64 kernel-3.10.0-123.9.3.el7.x86_64 kernel-devel-3.10.0-123.8.1.el7.x86_64 kernel-devel-3.10.0-123.9.2.el7.x86_64 kernel-devel-3.10.0-123.9.3.el7.x86_64 kernel-headers-3.10.0-123.9.3.el7.x86_64 kernel-tools-3.10.0-123.9.3.el7.x86_64 kernel-tools-libs-3.10.0-123.9.3.el7.x86_64 可以看出有三个版本的kernel，123.8.1、123.9.2和123.9.3。除了最新的kernel外，建议多保留一个旧kernel，以免新kernel出现问题时可以通过旧kernel进入系统。因而此处删除123.8.1版本的kernel: sudo yum remove kernel-3.10.0-123.8.1.el7.x86_64 sudo yum remove kernel-devel-3.10.0-123.8.1.el7.x86_64   3.NTFS驱动
+ CentOS下默认无法挂载NTFS格式的硬盘。需安装nfts-3g即可实现即插即用:
+sudo yum install ntfs-3g
+ 4.安装第三方源
+  epel源  sudo yum install epel-release</description>
+    </item>
+    
+    <item>
+      <title>Centos7 Mariadb的安装与配置</title>
+      <link>https://unclesky4.github.io/database/centos7-mariadb%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sun, 09 Sep 2018 15:09:18 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/database/centos7-mariadb%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
+      <description>安装MariaDB
+ 安装命令
+yum -y install mariadb mariadb-server  安装完成MariaDB，首先启动MariaDB
+systemctl start mariadb  设置开机启动
+systemctl enable mariadb   安全设置
+ 执行命令:
+ mysql_secure_installation  首先是设置密码，会提示先输入密码
+ Enter current password for root (enter for none):&amp;lt;–初次运行直接回车  设置密码
+ Set root password? [Y/n] &amp;lt;– 是否设置root用户密码，输入y并回车或直接回车 New password: &amp;lt;– 设置root用户的密码 Re-enter new password: &amp;lt;– 再输入一次你设置的密码  其他配置
+ Remove anonymous users? [Y/n] &amp;lt;– 是否删除匿名用户，回车
+ Disallow root login remotely? [Y/n] &amp;lt;–是否禁止root远程登录,回车,</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.48" />
+
+    
+    
+    
+
+<title>Mybatis用typeHandler处理enum类型 • IT BLOG</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mybatis用typeHandler处理enum类型"/>
+<meta name="twitter:description" content="如果想使用mybatis自带的枚举类处理，有2种方式，一个是EnumTypeHandler，一个是EnumOrdinalTypeHandler。 区别如下: EnumTypeHandler直接存储name值。它是mybatis默认的枚举类型转换器。 EnumOrdinalTypeHandler存储enum类里的序号值，此时数据库表字段一般对应用smallint/int类型的处理。 使用的时侯很简单，在insert或者update语句块，或者resultMap字段等地方指定相应的typeHandler即可。 &lt;insert id=&quot;insertUser&quot; parameterType=&quot;User&quot;&gt; insert into user(id,userName,status) values(#{id},#{userName},#{status,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}) &lt;/insert&gt; 或 &lt;resultMap id=&quot;BaseResultMap&quot; type=&quot;User&quot;&gt; &lt;id column=&quot;id&quot; property=&quot;userId&quot; jdbcType=&quot;INTEGER&quot; /&gt; &lt;result column=&quot;status&quot; property=&quot;status&quot; typeHandler=&quot;org.apache.ibatis.type.EnumOrdinalTypeHandler&quot;/&gt; &lt;/resultMap&gt; 不过大多数情况下，想存储的并不是枚举的顺序号，而是存储自定义的id值，这时我们就需要自己写enum的处理类。 若程序中原来有一个枚举类，name是长沙、株洲、湘潭三地，value采用身份证上的地区编号。 public enum CityTest { ChangSha(4301),Zhuzhou(4302),Xiangtan(4303); int value; private CityTest(int value){ this.value=value; } public int getValue() { return this.value; } /*方法Value2CityTest是为了typeHandler后加的*/ public static CityTest Value2CityTest(int value) { for (CityTest citytest : CityTest.values()) { if (citytest.value == value) { return citytest; } } throw new IllegalArgumentException(&quot;无效的value值: &quot; &#43; value &#43; &quot;!"/>
+
+<meta property="og:title" content="Mybatis用typeHandler处理enum类型" />
+<meta property="og:description" content="如果想使用mybatis自带的枚举类处理，有2种方式，一个是EnumTypeHandler，一个是EnumOrdinalTypeHandler。 区别如下: EnumTypeHandler直接存储name值。它是mybatis默认的枚举类型转换器。 EnumOrdinalTypeHandler存储enum类里的序号值，此时数据库表字段一般对应用smallint/int类型的处理。 使用的时侯很简单，在insert或者update语句块，或者resultMap字段等地方指定相应的typeHandler即可。 &lt;insert id=&quot;insertUser&quot; parameterType=&quot;User&quot;&gt; insert into user(id,userName,status) values(#{id},#{userName},#{status,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler}) &lt;/insert&gt; 或 &lt;resultMap id=&quot;BaseResultMap&quot; type=&quot;User&quot;&gt; &lt;id column=&quot;id&quot; property=&quot;userId&quot; jdbcType=&quot;INTEGER&quot; /&gt; &lt;result column=&quot;status&quot; property=&quot;status&quot; typeHandler=&quot;org.apache.ibatis.type.EnumOrdinalTypeHandler&quot;/&gt; &lt;/resultMap&gt; 不过大多数情况下，想存储的并不是枚举的顺序号，而是存储自定义的id值，这时我们就需要自己写enum的处理类。 若程序中原来有一个枚举类，name是长沙、株洲、湘潭三地，value采用身份证上的地区编号。 public enum CityTest { ChangSha(4301),Zhuzhou(4302),Xiangtan(4303); int value; private CityTest(int value){ this.value=value; } public int getValue() { return this.value; } /*方法Value2CityTest是为了typeHandler后加的*/ public static CityTest Value2CityTest(int value) { for (CityTest citytest : CityTest.values()) { if (citytest.value == value) { return citytest; } } throw new IllegalArgumentException(&quot;无效的value值: &quot; &#43; value &#43; &quot;!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://unclesky4.github.io/javaee/mybatis%E7%94%A8typehandler%E5%A4%84%E7%90%86enum%E7%B1%BB%E5%9E%8B/" /><meta property="article:published_time" content="2018-09-09T17:26:44&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-09T17:26:44&#43;08:00"/>
+
+    
+
+
+<link rel="stylesheet" href="/css/hyde-hyde.css">
+<link rel="stylesheet" href="/css/print.min.css" media="print">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://unclesky4.github.io/">IT BLOG</a>
+      </span>
+      
+      <p class="site__description">
+         我的蔚蓝天空 
+      </p>
+    </div>
+    <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/home">
+						<span>首 页</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/java">
+						<span>JAVA</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/javaee/">
+						<span>JAVAEE</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/linux/">
+						<span>Linux</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/html/">
+						<span>WEB前端</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/database/">
+						<span>数据库</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/notes/">
+						<span>随笔文档</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+    <p>
+      <section class="social">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+    </p>
+    <p class="copyright">
+      Copyright (c) 2018, unckesky4
+    </p>
+  </div>
+  <div>
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Mybatis用typeHandler处理enum类型</h1>
+     
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Sep 09, 2018
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 1 min read
+</div>
+
+
+  </header>
+  <div class="post">
+    <pre><code>
+如果想使用mybatis自带的枚举类处理，有2种方式，一个是EnumTypeHandler，一个是EnumOrdinalTypeHandler。
+区别如下:
+EnumTypeHandler直接存储name值。它是mybatis默认的枚举类型转换器。
+	EnumOrdinalTypeHandler存储enum类里的序号值，此时数据库表字段一般对应用smallint/int类型的处理。
+使用的时侯很简单，在insert或者update语句块，或者resultMap字段等地方指定相应的typeHandler即可。
+
+&lt;insert id=&quot;insertUser&quot; parameterType=&quot;User&quot;&gt;
+    insert into user(id,userName,status)
+values(#{id},#{userName},#{status,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler})
+&lt;/insert&gt;
+或
+&lt;resultMap id=&quot;BaseResultMap&quot; type=&quot;User&quot;&gt;
+    &lt;id column=&quot;id&quot; property=&quot;userId&quot; jdbcType=&quot;INTEGER&quot; /&gt;
+    &lt;result column=&quot;status&quot; property=&quot;status&quot; typeHandler=&quot;org.apache.ibatis.type.EnumOrdinalTypeHandler&quot;/&gt;
+&lt;/resultMap&gt;
+
+
+不过大多数情况下，想存储的并不是枚举的顺序号，而是存储自定义的id值，这时我们就需要自己写enum的处理类。
+若程序中原来有一个枚举类，name是长沙、株洲、湘潭三地，value采用身份证上的地区编号。
+public enum CityTest {
+    ChangSha(4301),Zhuzhou(4302),Xiangtan(4303);
+
+    int value;
+    private CityTest(int value){
+        this.value=value;
+    }
+    public int getValue() {
+        return this.value;
+    }
+    /*方法Value2CityTest是为了typeHandler后加的*/
+    public static CityTest Value2CityTest(int value) {
+        for (CityTest citytest : CityTest.values()) {
+            if (citytest.value == value) {
+                return citytest;
+            }
+        }
+        throw new IllegalArgumentException(&quot;无效的value值: &quot; + value + &quot;!&quot;);
+    }
+}
+根据上一章《【MyBatis学习16】自定义类型处理器typeHandlers介绍 》我们知道，在实现typeHandler时，需要用到两个方法
+一个方法将javaType转成jdbcType,另一个方法将jdbcType转成javaType。
+将javaType转成jdbcType我们可以用CityTest中的getValue()，获取当前CityTest对象的value值即可。
+那么现在要增加一个方法，将jdbcType转成javaType（这样就定义了方法的入参和返回类型）。因此我们增加了Value2CityTest方法。
+再定义转换器typeHandler的实现类：
+public class CityTestTypeHandler extends BaseTypeHandler&lt;CityTest&gt; {
+    @Override
+    public CityTest getNullableResult(ResultSet rSet, String columnName)
+            throws SQLException {
+        return CityTest.Value2CityTest(rSet.getInt(columnName));
+    }
+
+    @Override
+    public CityTest getNullableResult(ResultSet rSet, int columnIndex)
+            throws SQLException {
+        return CityTest.Value2CityTest(rSet.getInt(columnIndex));
+    }
+
+    @Override
+    public CityTest getNullableResult(CallableStatement cStatement, int columnIndex)
+            throws SQLException {
+        return CityTest.Value2CityTest(cStatement.getInt(columnIndex));
+    }
+
+    @Override
+    public void setNonNullParameter(PreparedStatement pStatement, int index,
+            CityTest citytest, JdbcType jdbcType) throws SQLException {
+        pStatement.setInt(index, citytest.getValue());
+}
+}
+接下来在myBatis配置文件中注册
+&lt;!-- 注册自定义类型处理器 --&gt;
+&lt;typeHandlers&gt;
+&lt;typeHandler handler=&quot;twm.mybatisdemo.type.CityTestTypeHandler&quot;/&gt;
+&lt;/typeHandlers&gt;
+然后就可以使用了。
+补充：
+实际使用中并不一定要求显示声明
+typeHandler=org.apache.ibatis.type.CityTestTypeHandler，系统会根据类型以及注册的typeHandler自动识别。
+
+
+转载：http://blog.csdn.net/soonfly/article/details/67640580
+
+</code></pre>
+
+  </div>
+  
+
+<div class="post--navigation post--navigation-single">
+    
+    <a href="/javaee/%E6%A1%86%E6%9E%B6%E6%80%BB%E7%BB%93/" class="post--navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">框架总结</span>
+    </a>
+    
+    
+    <a href="/javaee/shiro%E5%88%B7%E6%96%B0%E6%9D%83%E9%99%90/" class="post--navigation-next">
+      <span class="navigation-tittle">Shiro刷新权限</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+
+
+    
+
+
+
+    </body>
+</html>

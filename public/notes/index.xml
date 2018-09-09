@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>随笔文档 on IT BLOG</title>
+    <link>https://unclesky4.github.io/notes/</link>
+    <description>Recent content in 随笔文档 on IT BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Sep 2018 17:22:33 +0800</lastBuildDate>
+    
+	<atom:link href="https://unclesky4.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mplayer用法</title>
+      <link>https://unclesky4.github.io/notes/mplayer%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Sun, 09 Sep 2018 17:22:33 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/notes/mplayer%E7%94%A8%E6%B3%95/</guid>
+      <description>1，录音: mplayer mms://202.***.***.***/test.asf -dumpstream -dumpfile MyMovie.asf 可以把mms ,rtsp.http.ftp….等协议的视频流录制下来,保存为 MyMovie.asf 文件. 2,把mplayer可以播放的文件转化为avi格式： mencoder yourfile.rm -ovc copy -oac copy -o testOut.avi 3，如何转化为mp3文件： mplayer -vo null -ao pcm music.wmv lame -h audiodump.wav music.mp3 4， 如何把一个目录下所有图片转化为一个视频文件 mencoder /*.jpg -mf on:fps=25 -o output.avi -ovc divx4 5，如何用wget来看视频? wget ftp://micorsops.com/something.avi -O - | mplayer - 6，用mplayer播放rtp等使用tcp socket -rtsp-stream-over-tcp 7，mplayer播放带密码的地址 mplay rtsp://&amp;lt;username&amp;gt; :&amp;lt;password&amp;gt; @&amp;lt;hostname&amp;gt; :&amp;lt;etc.&amp;gt; 8，mplayer 无法播放某些rm的文件原因 Note that the LIVE555 Streaming Media libraries do not support RealAudio and/or RealVideo streams - even those described by a &amp;quot;rtsp://&amp;quot; URL - because these streams do not use RTP for transport.</description>
+    </item>
+    
+  </channel>
+</rss>

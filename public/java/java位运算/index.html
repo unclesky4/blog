@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.48" />
+
+    
+    
+    
+
+<title>Java位运算 • IT BLOG</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java位运算"/>
+<meta name="twitter:description" content="1. 判断int型变量a是奇数还是偶数 a&amp;1 = 0 偶数 a&amp;1 = 1 奇数 2. 求平均值，比如有两个int类型变量x、y,首先要求x&#43;y的和，再除以2，但是有可能x&#43;y的结果会超过int的最大表示范围，所以位运算就派上用场啦。 (x&amp;y)&#43;((x^y)&gt;&gt;1); 3. 对于一个大于0的整数，判断它是不是2的几次方 ((x&amp;(x-1))==0)&amp;&amp;(x!=0)； 4. 比如有两个int类型变量x、y,要求两者数字交换，位运算的实现方法：性能绝对高效 x ^= y; y ^= x; x ^= y; 5. 求绝对值 int abs( int x ) { int y ; y = x &gt;&gt; 31 ; return (x^y)-y ; //or: (x&#43;y)^y } 6. 取模运算，采用位运算实现： a % (2^n) 等价于 a &amp; (2^n - 1) 7. 乘法运算 采用位运算实现 a * (2^n) 等价于 a &lt;&lt; n 8."/>
+
+<meta property="og:title" content="Java位运算" />
+<meta property="og:description" content="1. 判断int型变量a是奇数还是偶数 a&amp;1 = 0 偶数 a&amp;1 = 1 奇数 2. 求平均值，比如有两个int类型变量x、y,首先要求x&#43;y的和，再除以2，但是有可能x&#43;y的结果会超过int的最大表示范围，所以位运算就派上用场啦。 (x&amp;y)&#43;((x^y)&gt;&gt;1); 3. 对于一个大于0的整数，判断它是不是2的几次方 ((x&amp;(x-1))==0)&amp;&amp;(x!=0)； 4. 比如有两个int类型变量x、y,要求两者数字交换，位运算的实现方法：性能绝对高效 x ^= y; y ^= x; x ^= y; 5. 求绝对值 int abs( int x ) { int y ; y = x &gt;&gt; 31 ; return (x^y)-y ; //or: (x&#43;y)^y } 6. 取模运算，采用位运算实现： a % (2^n) 等价于 a &amp; (2^n - 1) 7. 乘法运算 采用位运算实现 a * (2^n) 等价于 a &lt;&lt; n 8." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://unclesky4.github.io/java/java%E4%BD%8D%E8%BF%90%E7%AE%97/" /><meta property="article:published_time" content="2018-09-09T17:33:54&#43;08:00"/>
+<meta property="article:modified_time" content="2018-09-09T17:33:54&#43;08:00"/>
+
+    
+
+
+<link rel="stylesheet" href="/css/hyde-hyde.css">
+<link rel="stylesheet" href="/css/print.min.css" media="print">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://unclesky4.github.io/">IT BLOG</a>
+      </span>
+      
+      <p class="site__description">
+         我的蔚蓝天空 
+      </p>
+    </div>
+    <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/home">
+						<span>首 页</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/java">
+						<span>JAVA</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/javaee/">
+						<span>JAVAEE</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/linux/">
+						<span>Linux</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/html/">
+						<span>WEB前端</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/database/">
+						<span>数据库</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/notes/">
+						<span>随笔文档</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+    <p>
+      <section class="social">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</section>
+
+    </p>
+    <p class="copyright">
+      Copyright (c) 2018, unckesky4
+    </p>
+  </div>
+  <div>
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Java位运算</h1>
+     
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Sep 09, 2018
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 2 min read
+</div>
+
+
+  </header>
+  <div class="post">
+    <pre><code>
+1.  判断int型变量a是奇数还是偶数    
+     a&amp;1  = 0 偶数
+     a&amp;1 =  1 奇数
+2.  求平均值，比如有两个int类型变量x、y,首先要求x+y的和，再除以2，但是有可能x+y的结果会超过int的最大表示范围，所以位运算就派上用场啦。
+      (x&amp;y)+((x^y)&gt;&gt;1);
+3.  对于一个大于0的整数，判断它是不是2的几次方
+    ((x&amp;(x-1))==0)&amp;&amp;(x!=0)；
+4.  比如有两个int类型变量x、y,要求两者数字交换，位运算的实现方法：性能绝对高效
+    x ^= y;
+    y ^= x;
+    x ^= y;
+5. 求绝对值
+    int abs( int x )
+   {
+     int y ;
+     y = x &gt;&gt; 31 ;
+    return (x^y)-y ;        //or: (x+y)^y
+   }
+6.  取模运算，采用位运算实现：
+     a % (2^n) 等价于 a &amp; (2^n - 1)
+7.  乘法运算   采用位运算实现
+     a * (2^n) 等价于 a &lt;&lt; n
+8.   除法运算转化成位运算
+      a / (2^n) 等价于 a&gt;&gt; n
+9.   求相反数
+      (~x+1)
+10  a % 2 等价于 a &amp; 1
+
+
+
+
+// 1、左移( &lt;&lt; ) // 0000 0000 0000 0000 0000 0000 0000 0101 然后左移2位后，低位补0：//
+// 0000 0000 0000 0000 0000 0000 0001 0100 换算成10进制为20
+System.out.println(5 &lt;&lt; 2);
+// 运行结果是20
+
+// 2、右移( &gt;&gt; ) 高位补符号位
+// 0000 0000 0000 0000 0000 0000 0000 0101 然后右移2位，高位补0：
+// 0000 0000 0000 0000 0000 0000 0000 0001
+System.out.println(5 &gt;&gt; 2);// 运行结果是1
+
+// 3、无符号右移( &gt;&gt;&gt; ) 高位补0
+// 例如 -5换算成二进制后为：0101 取反加1为1011
+// 1111 1111 1111 1111 1111 1111 1111 1011
+// 我们分别对5进行右移3位、 -5进行右移3位和无符号右移3位：
+System.out.println(5 &gt;&gt; 3);// 结果是0 System.out.println(-5 &gt;&gt; 3);// 结果是-1
+System.out.println(-5 &gt;&gt;&gt; 3);// 结果是536870911
+
+// 4、与( &amp; )
+// 位与：第一个操作数的的第n位于第二个操作数的第n位如果都是1，那么结果的第n为也为1，否则为0
+System.out.println(5 &amp; 3);  // 结果为1 System.out.println(4 &amp; 1);// 结果为0
+
+// 5、或( | )
+// 第一个操作数的的第n位于第二个操作数的第n位只要有一个是1，那么结果的第n为也为1，否则为0
+System.out.println(5 | 3);// 结果为7
+
+// 6、异或( ^ )
+// 第一个操作数的的第n位于第二个操作数的第n位，相反，那么结果的第n为也为1，否则为0
+
+// 7、非( ~ )
+// 操作数的第n位为1，那么结果的第n位为0，反之。
+</code></pre>
+
+  </div>
+  
+
+<div class="post--navigation post--navigation-single">
+    
+    <a href="/java/jsonconfig%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post--navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">JsonConfig的使用</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+  crossorigin="anonymous">
+</script>
+
+
+
+
+    
+
+
+
+    </body>
+</html>
