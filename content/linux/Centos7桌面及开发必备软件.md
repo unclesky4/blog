@@ -18,11 +18,11 @@ draft: false
 
 **3. 微信 (Electronic WeChat)**
 
+需node.js环境, 安装npm
+
 **4. 压缩/解压工具**
 
 yum install rar unrar zip unzip p7zip
-
-需node.js环境, 安装npm
 
 **4. VIM安装**
 

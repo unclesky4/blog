@@ -41,9 +41,9 @@ systemctl是最主要的工具。它融合service和chkconfig的功能于一体�
  1. Ibus输入法软件
 2. FireFox浏览器
 3. 微信 (Electronic WeChat)
+需node.js环境, 安装npm
 4. 压缩/解压工具
 yum install rar unrar zip unzip p7zip
-需node.js环境, 安装npm
 4. VIM安装
  娱乐软件
  1. VLC 播放器

@@ -125,9 +125,9 @@ systemctl是最主要的工具。它融合service和chkconfig的功能于一体�
  1. Ibus输入法软件
 2. FireFox浏览器
 3. 微信 (Electronic WeChat)
+需node.js环境, 安装npm
 4. 压缩/解压工具
 yum install rar unrar zip unzip p7zip
-需node.js环境, 安装npm
 4. VIM安装
  娱乐软件
  1. VLC 播放器
@@ -179,6 +179,15 @@ systemctl enable mariadb   安全设置
  Set root password? [Y/n] &amp;lt;– 是否设置root用户密码，输入y并回车或直接回车 New password: &amp;lt;– 设置root用户的密码 Re-enter new password: &amp;lt;– 再输入一次你设置的密码  其他配置
  Remove anonymous users? [Y/n] &amp;lt;– 是否删除匿名用户，回车
  Disallow root login remotely? [Y/n] &amp;lt;–是否禁止root远程登录,回车,</description>
+    </item>
+    
+    <item>
+      <title>Home</title>
+      <link>https://unclesky4.github.io/home/</link>
+      <pubDate>Sun, 09 Sep 2018 14:57:24 +0800</pubDate>
+      
+      <guid>https://unclesky4.github.io/home/</guid>
+      <description> 个人博客 </description>
     </item>
     
   </channel>
