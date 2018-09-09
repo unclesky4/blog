@@ -44,7 +44,7 @@ systemctl是最主要的工具。它融合service和chkconfig的功能于一体�
 需node.js环境, 安装npm
 4. 压缩/解压工具
 yum install rar unrar zip unzip p7zip
-4. VIM安装
+5. VIM安装
  娱乐软件
  1. VLC 播放器
 2. DeadBeef 音乐播放器

@@ -24,7 +24,7 @@ draft: false
 
 yum install rar unrar zip unzip p7zip
 
-**4. VIM安装**
+**5. VIM安装**
 
 > 娱乐软件
 
