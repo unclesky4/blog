@@ -1,9 +1,9 @@
 ---
 title: "Centos7笔记"
 date: 2018-09-09T16:58:38+08:00
-#lastmod: 2018-09-09T16:58:38+08:00
+lastmod: 2018-09-09T16:58:38+08:00
 #tags : [ "dev", "hugo", "hyde-hyde"]
-categories : [ "dev" ]
+#categories : [ "dev" ]
 layout: post
 type:  "post"
 highlight: false

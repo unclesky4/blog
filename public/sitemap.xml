@@ -67,36 +67,6 @@
   </url>
   
   <url>
-    <loc>https://unclesky4.github.io/tags/dev/</loc>
-    <lastmod>2018-09-09T17:22:33+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://unclesky4.github.io/categories/dev/</loc>
-    <lastmod>2018-09-09T17:22:33+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://unclesky4.github.io/tags/hugo/</loc>
-    <lastmod>2018-09-09T17:22:33+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://unclesky4.github.io/tags/hyde-hyde/</loc>
-    <lastmod>2018-09-09T17:22:33+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://unclesky4.github.io/</loc>
-    <lastmod>2018-09-09T17:36:15+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://unclesky4.github.io/javaee/</loc>
     <lastmod>2018-09-09T17:36:15+08:00</lastmod>
   </url>
@@ -122,7 +92,12 @@
   
   <url>
     <loc>https://unclesky4.github.io/tags/</loc>
-    <lastmod>2018-09-09T17:22:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://unclesky4.github.io/</loc>
+    <lastmod>2018-09-09T17:36:15+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

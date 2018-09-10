@@ -2,8 +2,8 @@
 title: "Mplayer用法"
 date: 2018-09-09T17:22:33+08:00
 lastmod: 2018-09-09T17:22:33+08:00
-tags : [ "dev", "hugo", "hyde-hyde"]
-categories : [ "dev" ]
+#tags : [ "dev", "hugo", "hyde-hyde"]
+#categories : [ "dev" ]
 layout: post
 type:  "post"
 highlight: false
